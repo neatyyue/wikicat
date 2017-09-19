@@ -4,9 +4,7 @@ class Api::V1::GraphController < ApplicationController
     @category = Category.where(:cat_title => cat.capitalize).first
     @links = Link.where(:cl_to => @category.cat_title,
                         :cl_type => "subcat")
-    render :json => @links,
-           each_serializer: LinkSerializer,
-           root: @category.cat_title.downcase
+    render :json => @links, each_serializer: LinkSerializer
   end
   private
   def graph_params
